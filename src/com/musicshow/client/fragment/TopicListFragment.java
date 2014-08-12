@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -25,6 +26,8 @@ import com.musicshow.widget.SlideView.OnSlideListener;
 public class TopicListFragment extends ListFragment{
 	listViewUpdating mCallback;
 	ListView mListView;
+	String Tag = "TopicListFragment";
+	
     private List<MessageItem> mMessageItems = new ArrayList<MessageItem>();
     static String[] Headlines = {
         "Article One",
@@ -45,14 +48,19 @@ public class TopicListFragment extends ListFragment{
         // Create an array adapter for the list view, using the Ipsum headlines array
         //setListAdapter(new ArrayAdapter<String>(getActivity(), layout, Headlines));
     	//mCallback.bindListData(getListView());
-        bindListData();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, 
         Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.listview_compat, container, false);
-    	//return super.onCreateView(inflater, container, savedInstanceState);
+ 
+    }
+    
+    public void onActivityCreated (Bundle savedInstanceState){
+       	bindListData();
+    	super.onActivityCreated(savedInstanceState);
+    	Log.i(Tag, "onActivityCreated");
     }
 
     @Override
@@ -78,22 +86,24 @@ public class TopicListFragment extends ListFragment{
     
     public void bindListData(){
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 50; i++) {
             MessageItem item = new MessageItem();
-            if (i % 3 == 0) {
+            if (true) {
                 item.iconRes = R.drawable.default_qq_avatar;
-                item.title = "ÌÚÑ¶ÐÂÎÅ";
-                item.msg = "Çàµº±¬Õ¨ÂúÔÂ£º´óÁ¿ÓãÏºËÀÍö";
-                item.time = "ÍíÉÏ18:18";
+                item.title = "è…¾è®¯æ–°é—»" + i;
+                item.msg = "é’å²›çˆ†ç‚¸æ»¡æœˆï¼šå¤§é‡é±¼è™¾æ­»äº¡";
+                item.time = "æ™šä¸Š18:18";
             } else {
                 item.iconRes = R.drawable.wechat_icon;
-                item.title = "Î¢ÐÅÍÅ¶Ó";
-                item.msg = "»¶Ó­ÄãÊ¹ÓÃÎ¢ÐÅ";
-                item.time = "12ÔÂ18ÈÕ";
+                item.title = "å¾®ä¿¡å›¢é˜Ÿ";
+                item.msg = "æ¬¢è¿Žä½ ä½¿ç”¨å¾®ä¿¡";
+                item.time = "12æœˆ18æ—¥";
             }
             mMessageItems.add(item);
         }
         setListAdapter(new SlideAdapter());
+        
+        getListView().setOnItemClickListener((OnItemClickListener) getActivity());
         
 	}
 	
@@ -131,14 +141,11 @@ public class TopicListFragment extends ListFragment{
 
 	        @Override
 	        public int getCount() {
-	        	Log.i("size", mMessageItems.size()+"");
-	        	
 	            return mMessageItems.size();
 	        }
 
 	        @Override
 	        public Object getItem(int position) {
-	        	Log.i("position", position+"");
 	            return mMessageItems.get(position);
 	        }
 
@@ -152,12 +159,7 @@ public class TopicListFragment extends ListFragment{
 	        public View getView(int position, View convertView, ViewGroup parent) {
 	            ViewHolder holder;
 	            SlideView slideView = (SlideView) convertView;
-	            if (convertView == null) {
-//	            	convertView = mInflater.inflate(R.layout.list_item, null);
-//	                holder = new ViewHolder(convertView);
-//	                convertView.setTag(holder);
-	                
-	                
+	            if (slideView == null) {
 	                View itemView = mInflater.inflate(R.layout.topic_list_item, null);
 
 	                slideView = new SlideView(getActivity());
@@ -167,7 +169,6 @@ public class TopicListFragment extends ListFragment{
 	                slideView.setOnSlideListener((OnSlideListener) getActivity());
 	                slideView.setTag(holder);
 	            } else {
-//	                holder = (ViewHolder) convertView.getTag();
 	                holder = (ViewHolder) slideView.getTag();
 	            }
 	            

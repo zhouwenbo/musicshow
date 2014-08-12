@@ -1,5 +1,6 @@
 package com.musicshow.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -39,6 +40,7 @@ public class ListViewCompat extends ListView {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -50,7 +52,7 @@ public class ListViewCompat extends ListView {
             if (position != INVALID_POSITION) {
                 MessageItem data = (MessageItem) getItemAtPosition(position);
                 mFocusedItemView = data.slideView;
-                Log.e(TAG, "FocusedItemView=" + mFocusedItemView);
+                Log.e(TAG, "FocusedItemView=" + data.title);
             }
         }
         default:

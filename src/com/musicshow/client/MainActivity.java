@@ -58,12 +58,13 @@ OnSlideListener {
 
 	@Override
 	public void onSlide(View view, int status) {
-        Log.e(TAG, "onSlide v=" + status);
         if (mLastSlideViewWithStatusOn != null && mLastSlideViewWithStatusOn != view) {
+            Log.e(TAG, "onSlide shrink");
             mLastSlideViewWithStatusOn.shrink();
         }
 
         if (status == SLIDE_STATUS_ON) {
+            Log.e(TAG, "onSlide ON");
             mLastSlideViewWithStatusOn = (SlideView) view;
         }
 		

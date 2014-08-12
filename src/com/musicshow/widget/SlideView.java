@@ -28,6 +28,8 @@ public class SlideView extends LinearLayout {
     private int mLastX = 0;
     private int mLastY = 0;
     private static final int TAN = 2;
+    
+    private int mposition = 0;
 
     public interface OnSlideListener {
         public static final int SLIDE_STATUS_OFF = 0;
@@ -64,6 +66,7 @@ public class SlideView extends LinearLayout {
     }
 
     public void setButtonText(CharSequence text) {
+        Log.d(TAG, "setButtonText");
         ((TextView)findViewById(R.id.delete)).setText(text);
     }
 
