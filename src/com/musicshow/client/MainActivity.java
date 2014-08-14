@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.musicshow.client.fragment.TopicFragment;
 import com.musicshow.client.fragment.TopicListFragment;
 import com.musicshow.client.fragment.TopicListFragment.listViewUpdating;
 import com.musicshow.widget.SlideView;
@@ -38,7 +39,7 @@ OnSlideListener {
             }
 
             // Create an instance of ExampleFragment
-            TopicListFragment firstFragment = new TopicListFragment();
+            TopicFragment firstFragment = new TopicFragment();
 
             // In case this activity was started with special instructions from an Intent,
             // pass the Intent's extras to the fragment as arguments

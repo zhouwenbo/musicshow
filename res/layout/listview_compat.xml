@@ -5,7 +5,7 @@
     android:orientation="vertical" >  
   
     <com.musicshow.widget.ListViewCompat  
-        android:id="@+id/android:list"  
+        android:id="@+id/compat_list"
         android:layout_width="fill_parent"  
         android:layout_height="wrap_content"  
         android:background="#fff4f7f9"
